@@ -44,9 +44,11 @@ public class WXEntryActivity extends Activity {
 			// 同意登录
 			String code = response.code;
 			String state = response.state;
-			// 如果不是微信登录
-			if (!state.equals("wechat_login")) {
+			// 如果不是微信登录 *字符串"wechat_login"视具体返回值而定，这里仅仅举例
+			if (code == null || state == null 
+				|| !state.equals("wechat_login")) {
 				finish();
+				return;
 			}
 			
 			String tokenUrl = String.format(GET_ACCESS_TOKEN_URL, Constants.WECHAT_APP_ID,
